@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kr.co.tjoeun.daily10minutes_20201121.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
 import org.json.JSONObject
 
@@ -56,9 +57,19 @@ class LoginActivity : BaseActivity() {
                         runOnUiThread {
                             Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
 
-//                            받은 토큰값을 저장 (다른 화면에서도 활용)
+//                            서버가 알려주는 토큰을 추출
+//                            json {} => data {} => token String 추출
+
+                            val dataObj = json.getJSONObject("data")
+                            val token = dataObj.getString("token")
+
+//                            받은 토큰값을 저장 (다른 화면에서도 활용) => ContextUtil 기능 활용
+
+                            ContextUtil.setLoginUserToken(mContext, token)
 
 //                            메인화면으로 진입 + 로그인화면 종료
+
+
 
                         }
 
