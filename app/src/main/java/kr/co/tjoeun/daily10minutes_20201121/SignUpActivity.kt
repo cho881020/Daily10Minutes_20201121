@@ -39,11 +39,26 @@ class SignUpActivity : BaseActivity() {
 //                        가입 성공 : 가입한사람의 닉네임으로 환영 토스트
 //                        테스터201122님 환영합니다! 등
 //                        로그인 화면으로 복귀
+
+//                        json {} => data {} : JSONObject => user {} => nick_name String
+
+                        val dataObj = json.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickName = userObj.getString("nick_name")
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "${nickName}님 환영합니다!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+
                     }
                     else {
 //                        가입실패 : message 적힌 가입 실패 사유를 받아서 출력
                         val message = json.getString("message")
-                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        runOnUiThread {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+
                     }
 
                 }
