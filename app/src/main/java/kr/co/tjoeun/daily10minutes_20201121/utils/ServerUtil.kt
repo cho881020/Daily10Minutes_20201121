@@ -18,6 +18,7 @@ class ServerUtil {
 
 //    ServerUtil.함수() 처럼, 클래스이름.만 해도 기능을 사용하게 도와주는 코드
 //    JAVA - static 개념에 대응되는 개념.
+
     companion object {
 
 //        서버 호스트 주소를 쉽게 입력하기 위한 변수
@@ -103,6 +104,47 @@ class ServerUtil {
 
 
         }
+
+//        회원가입 기능 수행 함수
+
+        fun putRequestSignUp(context: Context, id: String, pw: String, nickName:String, handler: JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+
+            val urlString = "${BASE_URL}/user"
+
+            val formData = FormBody.Builder()
+                .add("email", id)
+                .add("password", pw)
+                .add("nick_name", nickName)
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .put(formData)
+//                    .header("이름표", "실제값") // 서버가 헤더데이터를 요구하면 주석 해제
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                   Toast.makeText(context, "서버에 문제가 있습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+
+
+
+        }
+
 
     }
 
