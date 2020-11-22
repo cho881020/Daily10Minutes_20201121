@@ -3,6 +3,7 @@ package kr.co.tjoeun.daily10minutes_20201121
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
 
 class MainActivity : BaseActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : BaseActivity() {
 
 //            2. 서버에 맞는 회원인지 확인 => 로그인 API 호출 => 서버 응답 분석 => UI 반영
 
-
+            ServerUtil.postRequestLogin(inputEmail, inputPw)
 
         }
 
