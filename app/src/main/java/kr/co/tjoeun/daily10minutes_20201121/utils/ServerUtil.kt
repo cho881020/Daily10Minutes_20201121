@@ -9,6 +9,10 @@ import java.io.IOException
 
 class ServerUtil {
 
+    interface JsonResponseHandler {
+        fun onResponse(json: JSONObject)
+    }
+
 //    ServerUtil.함수() 처럼, 클래스이름.만 해도 기능을 사용하게 도와주는 코드
 //    JAVA - static 개념에 대응되는 개념.
     companion object {
@@ -18,7 +22,7 @@ class ServerUtil {
 
 //        로그인 기능 수행 함수
 
-        fun postRequestLogin(context: Context, id: String, pw: String) {
+        fun postRequestLogin(context: Context, id: String, pw: String, handler: JsonResponseHandler?) {
 
 //            클라이언트의 역할을 수행해주는 변수 (라이브러리 활용)
             val client = OkHttpClient()
@@ -82,6 +86,12 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
 
                     Log.d("서버응답본문", jsonObj.toString())
+
+//                    이 함수를 사용하는 화면에서,
+//                    서버에 다녀오면 어떻게 대처할지 적어두었다면
+//                    그 내용을 실행하도록 해주는 코드
+
+                    handler?.onResponse(jsonObj)
 
                 }
 
