@@ -9,6 +9,9 @@ import java.io.IOException
 
 class ServerUtil {
 
+//    화면(액티비티)의 입장에서, 서버에 다녀왔을때 어떤 행동을 실행할지
+//    행동 지침을 담아주기 위한 인터페이스(가이드북)를 직접 정의
+
     interface JsonResponseHandler {
         fun onResponse(json: JSONObject)
     }
