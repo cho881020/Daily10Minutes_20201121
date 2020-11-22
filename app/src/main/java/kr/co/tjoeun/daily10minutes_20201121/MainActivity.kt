@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
 
 //            2. 서버에 맞는 회원인지 확인 => 로그인 API 호출 => 서버 응답 분석 => UI 반영
 
-            ServerUtil.postRequestLogin(inputEmail, inputPw)
+            ServerUtil.postRequestLogin(mContext, inputEmail, inputPw)
 
         }
 

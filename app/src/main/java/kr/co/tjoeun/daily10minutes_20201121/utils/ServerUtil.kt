@@ -1,8 +1,10 @@
 package kr.co.tjoeun.daily10minutes_20201121.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import okhttp3.*
+import java.io.IOException
 
 class ServerUtil {
 
@@ -15,7 +17,7 @@ class ServerUtil {
 
 //        로그인 기능 수행 함수
 
-        fun postRequestLogin(id: String, pw: String) {
+        fun postRequestLogin(context: Context, id: String, pw: String) {
 
 //            클라이언트의 역할을 수행해주는 변수 (라이브러리 활용)
             val client = OkHttpClient()
@@ -50,7 +52,32 @@ class ServerUtil {
 //            클라이언트로 동작하는 행위 (Request 호출)
 //            OkHttp 라이브러리 => client 변수 활용
 
-            client.newCall(request)
+//            newCall => 실제 API 호출 실행
+//            enqueue : Callback => 서버에 다녀와서 (Callback) 할 일을 등록하자
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버에 연결 자체를 실패한 경우.
+//                    인터넷 단선, 서버 터짐 등의 사유로 연결 자체를 실패.
+//                    로그인 실패, 회원가입 실패 등은 우선 연결은 성공. (결과가 나오면 연결은 성공)
+//                    토스트 : 서버에 문제가 있습니다. 서버관리자에게 문의해주세요 등.
+
+                    Toast.makeText(context, "서버에 문제가 있습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    서버의 응답을 받아내는데 성공한 경우.
+//                    서버가 내려준 응답에 뭐라고 적혀있는지 확인.
+//                    응답(Response) - 본문(body) + 부가정보들.. => body만 추출해보자.
+//                    String 형태로 변환해서 저장. (로그로 확인) => toString() X, string() 으로 실행.
+
+                    val bodyString = response.body!!.string()
+
+                    Log.d("서버응답본문", bodyString)
+
+                }
+
+            })
 
 
 
