@@ -2,7 +2,9 @@ package kr.co.tjoeun.daily10minutes_20201121
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
 import org.json.JSONObject
@@ -18,6 +20,18 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//        이메일 입력칸의 내용이 변경될때
+
+        idEdt.addTextChangedListener {
+
+//            한글자라도 내용이 변경되면 실행되는 부분.
+            Log.d("아이디입력값", idEdt.text.toString())
+
+//            내용이 변경되면 => 무조건 검사 결과를 원상태로 복귀.
+            checkResultTxt.text = "중복 확인을 해주세요."
+
+        }
 
         emailCheckBtn.setOnClickListener {
 
