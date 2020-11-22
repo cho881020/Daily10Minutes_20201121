@@ -54,9 +54,13 @@ class MainActivity : BaseActivity() {
 
                     }
                     else {
-//                        로그인 실패
+//                        로그인 실패 : 서버가 알려주는 실패 사유를 받아서 토스트로 출력
+
+//                        응답에 달려있는 "message" 라는 이름표가 붙은 String을 받아서 사용.
+                        val message = json.getString("message")
+
                         runOnUiThread {
-                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
 
                     }
