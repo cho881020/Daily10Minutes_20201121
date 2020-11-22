@@ -3,6 +3,7 @@ package kr.co.tjoeun.daily10minutes_20201121
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
 import org.json.JSONObject
@@ -35,6 +36,30 @@ class MainActivity : BaseActivity() {
 //                    그 응답 내용 : json 변수에 담겨있다.
 
                     Log.d("화면:서버다녀옴", json.toString())
+
+//                    서버가 알려주는 code값을 추출해서 => 로그로 출력
+                    val codeNum = json.getInt("code")
+
+                    Log.d("코드값", codeNum.toString())
+
+//                    받아낸 코드값으로 로그인 성공 / 실패를 토스트로 출력
+
+                    if (codeNum == 200) {
+//                        로그인 성공!
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        }
+
+
+                    }
+                    else {
+//                        로그인 실패
+                        runOnUiThread {
+                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
 
                 }
 
