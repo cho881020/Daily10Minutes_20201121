@@ -34,6 +34,15 @@ class UserAdapter(
 
         val row = tempRow!!
 
+        val profileImg = row.findViewById<ImageView>(R.id.profileImg)
+        val nickNameTxt = row.findViewById<TextView>(R.id.nickNameTxt)
+        val emailTxt = row.findViewById<TextView>(R.id.emailTxt)
+
+        val userData = mList[position]
+
+        nickNameTxt.text = userData.nickName
+        emailTxt.text = userData.email
+
         return row
 
     }
