@@ -358,6 +358,49 @@ class ServerUtil {
 
         }
 
+//        프로젝트 최신정보 상세 조회
+
+        fun getRequestProjectDetail(context: Context, projectId: Int, handler: JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+
+//            GET / DELETE : Query에 데이터 첨부 => URL작성 + 데이터 첨부도 같이.
+//            url에 데이터가 같이 노출되는 형태이므로. => 직접 작성하기 어렵다. 라이브러리 활용. (OkHttp)
+//            POST / PUT / PATCH : FormBody에 데이터 첨부
+
+//            복잡한 주소를 가공해나갈때 필요한 기본 재료 (URL 가공기)
+            val urlBuilder = "${BASE_URL}/project/${projectId}".toHttpUrlOrNull()!!.newBuilder()
+//            URL 가공기를 이용해서 필요한 파라미터들을 쉽게 첨부.
+//            urlBuilder.addEncodedQueryParameter("email", email)
+
+//            가공이 끝난 URL을 urlString으로 변경.
+            val urlString = urlBuilder.build().toString()
+
+//            요청 정보를 종합하는 Request 생성
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context)) // 나중에 필요시 주석 해제
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Toast.makeText(context, "서버에 문제가 있습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+
+        }
+
 
     }
 

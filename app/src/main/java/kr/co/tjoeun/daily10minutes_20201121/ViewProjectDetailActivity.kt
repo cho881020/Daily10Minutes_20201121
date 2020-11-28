@@ -31,6 +31,24 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                    참여신청과 달리, 서버가 최신 상태를 안알려줌.
 //                    다시 최신 상태로 받아오게 요청. => API 추가 호출 => 새로고침한다.
 
+                    ServerUtil.getRequestProjectDetail(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
+                        override fun onResponse(json: JSONObject) {
+
+                            val dataObj = json.getJSONObject("data")
+                            val projectObj = dataObj.getJSONObject("project")
+
+//                            projectObj를 가지고 => Project로 변환 => mProject를 대체
+                            mProject = Project.getProjectFromJSON(projectObj)
+
+//                            mProject의 내용이 갱신 => UI에 새로 반영
+                            runOnUiThread {
+                                setProjectDataToUI()
+                            }
+
+                        }
+
+                    })
+
                 }
 
             })
