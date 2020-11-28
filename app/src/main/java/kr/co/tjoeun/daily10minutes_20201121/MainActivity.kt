@@ -100,6 +100,16 @@ class MainActivity : BaseActivity() {
 
                 }
 
+//                서버를 다녀오는 행위이므로 => 어댑터 연결보다, 우선 작성되어도 실제로는 늦게 끝날수 있다.
+//                리스트뷰의 내용 변경을 유발하는 행위 => 변경사항 반영 실행
+//                리스트뷰 내용 변경 반영 => UI 영향 미침. => UI쓰레드 안에서 실행
+
+                runOnUiThread {
+                    mAdapter.notifyDataSetChanged()
+                }
+
+
+
             }
 
         })
