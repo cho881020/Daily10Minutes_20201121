@@ -61,6 +61,40 @@ class MainActivity : BaseActivity() {
         ServerUtil.getRequestProjectList(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
+                val dataObj = json.getJSONObject("data")
+
+//                [  ] 로 구성된 JSONArray 추출 코드
+                val projectsArr = dataObj.getJSONArray("projects")
+
+//                ex. 10개 프로젝트 : 0~9(10 직전)번째 까지 분석
+//                반복분석 => for 활용 : JSONArray 분석은 대부분 for문과 연계됨.
+//                JSONArray의 내용물 갯수 : arr변수.length() 기능 활용
+
+                for (i in     0 until projectsArr.length()) {
+
+//                    projectsArr 에서 자리에 맞는 (i번째) {  } JSONObject 추출
+
+                    val projectObj = projectsArr.getJSONObject(i)
+
+//                    projectObj는 JSONObject => Project 형태로 변환 : ArrayList에 삽입 가능.
+
+//                    기본데이터만 들어있는 Project 객체 하나 생성
+                    val project = Project()
+
+//                    기본데이터들을 => 서버가 주는 값으로 교체
+                    project.id = projectObj.getInt("id")
+                    project.title = projectObj.getString("title")
+                    project.imageURL = projectObj.getString("img_url")
+                    project.description = projectObj.getString("description")
+                    project.proofMethod = projectObj.getString("proof_method")
+                    project.completeDays = projectObj.getInt("complete_days")
+                    project.onGoingUsersCount = projectObj.getInt("ongoing_users_count")
+
+//                    완성된 project를 => mProjectList에 추가.
+                    mProjectList.add(project)
+
+                }
+
             }
 
         })
