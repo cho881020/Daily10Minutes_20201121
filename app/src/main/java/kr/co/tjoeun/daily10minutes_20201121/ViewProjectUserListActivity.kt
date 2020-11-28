@@ -16,7 +16,7 @@ class ViewProjectUserListActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-
+        
     }
 
     override fun setValues() {
