@@ -95,16 +95,7 @@ class MainActivity : BaseActivity() {
 //                    projectObj는 JSONObject => Project 형태로 변환 : ArrayList에 삽입 가능.
 
 //                    기본데이터만 들어있는 Project 객체 하나 생성
-                    val project = Project()
-
-//                    기본데이터들을 => 서버가 주는 값으로 교체
-                    project.id = projectObj.getInt("id")
-                    project.title = projectObj.getString("title")
-                    project.imageURL = projectObj.getString("img_url")
-                    project.description = projectObj.getString("description")
-                    project.proofMethod = projectObj.getString("proof_method")
-                    project.completeDays = projectObj.getInt("complete_days")
-                    project.onGoingUsersCount = projectObj.getInt("ongoing_users_count")
+                    val project = Project.getProjectFromJSON(projectObj)
 
 //                    완성된 project를 => mProjectList에 추가.
                     mProjectList.add(project)

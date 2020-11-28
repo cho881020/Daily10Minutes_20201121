@@ -13,6 +13,8 @@ class Project : Serializable {
     var completeDays = 0
     var onGoingUsersCount = 0
 
+    var isMyProject = false // 이 변수에는 Boolean이 들어갈거라고 명시
+
     companion object {
 
 //        적당한 모양의 JSON { } 를 넣으면 => Project 객체로 변환해주는 기능.
@@ -31,6 +33,8 @@ class Project : Serializable {
             project.proofMethod = json.getString("proof_method")
             project.completeDays = json.getInt("complete_days")
             project.onGoingUsersCount = json.getInt("ongoing_users_count")
+
+            project.isMyProject = json.getBoolean("is_my_project")
             
 //            완성된 project 변수를 결과로 리턴
             return project
