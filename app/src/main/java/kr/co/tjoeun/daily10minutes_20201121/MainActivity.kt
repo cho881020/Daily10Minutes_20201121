@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.co.tjoeun.daily10minutes_20201121.adapters.ProjectAdapter
 import kr.co.tjoeun.daily10minutes_20201121.datas.Project
 import kr.co.tjoeun.daily10minutes_20201121.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
@@ -14,6 +15,7 @@ import org.json.JSONObject
 class MainActivity : BaseActivity() {
 
     val mProjectList = ArrayList<Project>()
+    lateinit var mAdapter : ProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +52,9 @@ class MainActivity : BaseActivity() {
 
 //        서버에 => 어떤 프로젝트들이 있는지 API 호출 => 그 결과 (JSON) 파싱해서, ArrayList에 대입
         getProjectsFromServer()
+
+        mAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProjectList)
+        projectListView.adapter = mAdapter
 
     }
 
