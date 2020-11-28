@@ -43,6 +43,8 @@ class UserAdapter(
         nickNameTxt.text = userData.nickName
         emailTxt.text = userData.email
 
+        Glide.with(mContext).load(userData.profileImgList[0]).into(profileImg)
+
         return row
 
     }
