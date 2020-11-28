@@ -3,10 +3,14 @@ package kr.co.tjoeun.daily10minutes_20201121
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kr.co.tjoeun.daily10minutes_20201121.datas.Project
+import kr.co.tjoeun.daily10minutes_20201121.datas.User
+import kr.co.tjoeun.daily10minutes_20201121.utils.ServerUtil
 
 class ViewProjectUserListActivity : BaseActivity() {
 
     lateinit var mProject : Project
+
+    val mUserList = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,11 +20,22 @@ class ViewProjectUserListActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-        
+
     }
 
     override fun setValues() {
         mProject = intent.getSerializableExtra("project") as Project
+
+//        서버에서 사용자목록 가져오는 함수 별도 실행
+        getUserListFromServer()
+
+    }
+
+    fun getUserListFromServer() {
+
+//        실제로 서버에 접근 (ServerUtil) => 사용자 목록 받아오기. => 내용 분석 + mUserList에 담아주기
+
+//        ServerUtil.getpro
 
     }
 
