@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/red_border_box"
+        android:layout_margin="10dp"/>
+
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
