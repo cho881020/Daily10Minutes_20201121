@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "173043407787",
+    "firebase_url": "https://my-push-test-151d5.firebaseio.com",
+    "project_id": "my-push-test-151d5",
+    "storage_bucket": "my-push-test-151d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173043407787:android:bcb56ad1b4c724b28b10ee",
+        "android_client_info": {
+          "package_name": "kr.co.tjoeun.daily10minutes_20201121"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173043407787-krns6tmctlolajjshojb0kgip5jh1mvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUCDKyx7qC4Gox-E0CDh4N7ptbACKjsK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173043407787-krns6tmctlolajjshojb0kgip5jh1mvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
