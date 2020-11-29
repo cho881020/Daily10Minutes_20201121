@@ -2,6 +2,7 @@ package kr.co.tjoeun.daily10minutes_20201121.datas
 
 import android.util.Log
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -56,6 +57,25 @@ class User {
 
 //            2) 여러 항목을 한꺼번에 입력하기
             u.createdAt.set(2000, Calendar.JANUARY, 1, 0, 0, 0)
+
+
+//            서버가 알려주는 가입일시를 분석해서 => u.createdAt에 세팅해서, 실제 가입일시가 저장되게하자.
+
+//            서버가 주는 String을 우선 저장
+            val createdAtStr = json.getString("created_at")
+
+//            Calendar에 들어갈 수 있게 해주자. String을 변환. (SimpleDateFormat의 도움을 받자)
+//            양식을 지정할때, 서버가 내려주는 데이터를 보고 받아적는 느낌으로 작성. (마음대로 쓰는게 아님)
+
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+//            sdf를 이용해서 => createdAtStr 를 Calendar(u.createdAt)에 대입.
+
+//            분석 (parse) 결과 : Date? 로 나옴. Calendar가 아님.
+            val parsedTime = sdf.parse(createdAtStr)
+
+//            Calendar에 Date를 어떻게? => Calendar가 가진 time 변수에 대입.
+            u.createdAt.time = parsedTime
 
             return u
         }
