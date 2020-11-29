@@ -47,11 +47,11 @@ class UserAdapter(
 
         Glide.with(mContext).load(userData.profileImgList[0]).into(profileImg)
 
-//        가입일자(userData.createdAt-Calendar)를 => "2000-01-01" (String) 양식으로 가공하고 싶다.
+//        가입일자(userData.createdAt-Calendar)를 => "2000년 1월 1일" (String) 양식으로 가공하고 싶다.
 //        양식가공 : SimpleDateFormat 활용
 
 //        가공할 양식을 우선 결정
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val sdf = SimpleDateFormat("yyyy년 M월 d일")
 
 //        해당 양식 활용 => Calendar를 String으로 뽑아내자.
         val createdAtStr = sdf.format(userData.createdAt.time)
