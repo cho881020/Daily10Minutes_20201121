@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20201121.datas
 
+import android.util.Log
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList

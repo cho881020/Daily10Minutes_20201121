@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import kr.co.tjoeun.daily10minutes_20201121.R
 import kr.co.tjoeun.daily10minutes_20201121.datas.Project
 import kr.co.tjoeun.daily10minutes_20201121.datas.User
+import java.text.SimpleDateFormat
 
 class UserAdapter(
     val mContext: Context,
@@ -37,6 +38,7 @@ class UserAdapter(
         val profileImg = row.findViewById<ImageView>(R.id.profileImg)
         val nickNameTxt = row.findViewById<TextView>(R.id.nickNameTxt)
         val emailTxt = row.findViewById<TextView>(R.id.emailTxt)
+        val signUpDateTxt = row.findViewById<TextView>(R.id.signUpDateTxt)
 
         val userData = mList[position]
 
@@ -44,6 +46,18 @@ class UserAdapter(
         emailTxt.text = userData.email
 
         Glide.with(mContext).load(userData.profileImgList[0]).into(profileImg)
+
+//        가입일자(userData.createdAt-Calendar)를 => "2000-01-01" (String) 양식으로 가공하고 싶다.
+//        양식가공 : SimpleDateFormat 활용
+
+//        가공할 양식을 우선 결정
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+
+//        해당 양식 활용 => Calendar를 String으로 뽑아내자.
+        val createdAtStr = sdf.format(userData.createdAt.time)
+
+//        가입일자 문구에 반영
+        signUpDateTxt.text = "(가입일자 : ${createdAtStr})"
 
         return row
 
