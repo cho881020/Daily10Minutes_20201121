@@ -2,11 +2,15 @@ package kr.co.tjoeun.daily10minutes_20201121
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
+
+//    커스텀 액션바에 만들어둔 UI 요소들을 담아둘 변수들
+    lateinit var backBtn : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //            supportActionBar 가 null 이 아닐때 실행시켜줄 코드. : let의 역할
 
             setCustomActionBar()
+
         }
 
 
@@ -56,6 +61,15 @@ abstract class BaseActivity : AppCompatActivity() {
         val toolBar = defaultActionBar.customView.parent as Toolbar
         toolBar.setContentInsetsAbsolute(0,0)
 
+
+//        액션바 xml에 있는 UI요소들을 => 멤버변수 (lateinit var)에 연결 => 코틀린단에서 사용가능
+        backBtn = defaultActionBar.customView.findViewById(R.id.backBtn)
+
+
+//        ex. 백버튼은 눌리면 무조건 => finish() 실행
+        backBtn.setOnClickListener {
+            finish()
+        }
 
     }
 

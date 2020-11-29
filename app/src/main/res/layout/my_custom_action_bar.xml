@@ -4,12 +4,20 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="#000000">
+    android:background="#FF0000">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:src="@drawable/actionbar_logo" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/back_icon"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"/>
 
 </FrameLayout>
