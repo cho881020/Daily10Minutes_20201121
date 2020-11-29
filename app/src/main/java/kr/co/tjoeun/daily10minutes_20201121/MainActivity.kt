@@ -66,9 +66,6 @@ class MainActivity : BaseActivity() {
 //        액션바의 제목을 바꾸는 제일 기본적인 방법
 //        title = "메인화면"  // 자주 사용되지는 않는다.
 
-//        액션바 자체를 커스텀으로 그리려면?
-        setCustomActionBar()
-
 //        서버에 => 어떤 프로젝트들이 있는지 API 호출 => 그 결과 (JSON) 파싱해서, ArrayList에 대입
         getProjectsFromServer()
 
@@ -77,33 +74,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-//    액션바를 직접 그리기 위한 함수
 
-    fun setCustomActionBar() {
-
-//        1. 액션바가 어떻게 보이게 하고 싶은지? 모양 (layout)을 그려야함. xml 작성
-
-//        기존 액션바를 불러내서 => 속성(ex. 커스텀액션바모드)들 변경 => xml 반영
-
-//        기존 액션바 불러내기 (무조건 존재한다고 우기기)
-        val defaultActionBar = supportActionBar!!
-
-//        커스텀 액션바를 보여주게 모드 변경
-        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-
-//        실제로 보여질 커스텀 화면 연결
-        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
-
-//        액션바(보라색) > 툴바(여백) > 커스텀뷰(검정배경)
-//        여백을 없애려면? => 액션바-툴바의 속성 변경 => 내부공간 0으로 설정.
-
-//        액션바.커스텀뷰.부모 -> 툴바로 변신
-//        androidx 가 주는 툴바 사용
-        val toolBar = defaultActionBar.customView.parent as Toolbar
-        toolBar.setContentInsetsAbsolute(0,0)
-
-
-    }
 
 //    서버에 프로젝트 목록 요청/분석 기능 함수
 
