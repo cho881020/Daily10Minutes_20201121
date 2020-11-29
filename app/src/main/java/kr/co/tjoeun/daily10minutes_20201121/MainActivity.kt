@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20201121.adapters.ProjectAdapter
@@ -80,6 +81,17 @@ class MainActivity : BaseActivity() {
     fun setCustomActionBar() {
 
 //        1. 액션바가 어떻게 보이게 하고 싶은지? 모양 (layout)을 그려야함. xml 작성
+
+//        기존 액션바를 불러내서 => 속성(ex. 커스텀액션바모드)들 변경 => xml 반영
+
+//        기존 액션바 불러내기 (무조건 존재한다고 우기기)
+        val defaultActionBar = supportActionBar!!
+
+//        커스텀 액션바를 보여주게 모드 변경
+        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+
+//        실제로 보여질 커스텀 화면 연결
+        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
 
     }
 
