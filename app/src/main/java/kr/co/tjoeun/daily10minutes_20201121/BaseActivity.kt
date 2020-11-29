@@ -2,6 +2,7 @@ package kr.co.tjoeun.daily10minutes_20201121
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -70,7 +71,6 @@ abstract class BaseActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             finish()
         }
-
     }
 
 }

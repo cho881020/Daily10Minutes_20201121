@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
@@ -65,6 +66,11 @@ class MainActivity : BaseActivity() {
 
 //        액션바의 제목을 바꾸는 제일 기본적인 방법
 //        title = "메인화면"  // 자주 사용되지는 않는다.
+
+//        BaseActivity가 물려준 요소들 중에는 => backBtn도 물려주고 있다.
+//        MainActivity에서는 당연히 backBtn도 코드 접근 가능.
+//        메인에서는 백버튼 숨김처리
+       backBtn.visibility = View.GONE
 
 //        서버에 => 어떤 프로젝트들이 있는지 API 호출 => 그 결과 (JSON) 파싱해서, ArrayList에 대입
         getProjectsFromServer()
