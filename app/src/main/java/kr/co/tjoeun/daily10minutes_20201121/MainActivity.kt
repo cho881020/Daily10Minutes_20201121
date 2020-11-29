@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20201121.adapters.ProjectAdapter
 import kr.co.tjoeun.daily10minutes_20201121.datas.Project
@@ -92,6 +93,15 @@ class MainActivity : BaseActivity() {
 
 //        실제로 보여질 커스텀 화면 연결
         defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
+
+//        액션바(보라색) > 툴바(여백) > 커스텀뷰(검정배경)
+//        여백을 없애려면? => 액션바-툴바의 속성 변경 => 내부공간 0으로 설정.
+
+//        액션바.커스텀뷰.부모 -> 툴바로 변신
+//        androidx 가 주는 툴바 사용
+        val toolBar = defaultActionBar.customView.parent as Toolbar
+        toolBar.setContentInsetsAbsolute(0,0)
+
 
     }
 
