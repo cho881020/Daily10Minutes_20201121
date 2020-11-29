@@ -1,6 +1,9 @@
 package kr.co.tjoeun.daily10minutes_20201121.fcm
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -21,6 +24,15 @@ class MyFCM : FirebaseMessagingService() {
 //        FCM서버가 => 우리폰으로 푸시알림을 줬을때 실행되는 함수.
 //        푸시알림의 내용 : p0 변수에 들어있다.
 //        실제 사용자에게 알림을 띄우는 코드를 작성하는 곳
+
+//        앱이 켜져 있을때 알림이 오면 실행됨.
+
+        val myHandler = Handler(Looper.getMainLooper())
+
+        myHandler.post {
+            Toast.makeText(applicationContext, p0.notification!!.title, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 }
