@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 보통 액션바의 Height는 60dp -->
+<!-- 액션바 모양 구성 특성상 FrameLayout 활용이 편리함 -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#000000">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:src="@drawable/actionbar_logo" />
+
+</FrameLayout>

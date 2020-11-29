@@ -61,11 +61,25 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
+//        액션바의 제목을 바꾸는 제일 기본적인 방법
+//        title = "메인화면"  // 자주 사용되지는 않는다.
+
+//        액션바 자체를 커스텀으로 그리려면?
+        setCustomActionBar()
+
 //        서버에 => 어떤 프로젝트들이 있는지 API 호출 => 그 결과 (JSON) 파싱해서, ArrayList에 대입
         getProjectsFromServer()
 
         mAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProjectList)
         projectListView.adapter = mAdapter
+
+    }
+
+//    액션바를 직접 그리기 위한 함수
+
+    fun setCustomActionBar() {
+
+//        1. 액션바가 어떻게 보이게 하고 싶은지? 모양 (layout)을 그려야함. xml 작성
 
     }
 
